@@ -3,14 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search on YouTube</title>
+    <title>YouTube Search</title>
 </head>
 <body>
     <h1>Search on YouTube</h1>
     <form action="/search" method="POST">
-        <label for="keyword">Enter the keyword:</label>
-        <input type="text" id="keyword" name="keyword" required>
+        <input type="text" name="keyword" placeholder="Enter keyword to search">
         <button type="submit">Search</button>
     </form>
+
+    <!-- If there is data, display the results below the form -->
+    {% if data %}
+        <h2>Search Results</h2>
+        <ul>
+            {% for video in data %}
+                <li>
+                    <strong>Title:</strong> {{ video.title }} <br>
+                    <a href="{{ video.url }}" target="_blank">Watch the video</a> <br>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
 </body>
 </html>
